@@ -309,10 +309,16 @@ function Plotter(nodesCtx, edgesCtx, labelsCtx, hoverCtx, graph, w, h) {
   function drawOutlineNode(node) {
     var ctx = nodesCtx;
 
+    // Browser compatibility placeholder
+    if (!ctx.setLineDash) {
+      ctx.setLineDash = function () {}
+    }
+
     // Node border:
     ctx.beginPath();
-    ctx.strokeStyle = '#fff';
-    ctx.lineWidth = 0.5;
+      ctx.strokeStyle = '#fff';
+      ctx.setLineDash([3]);
+      ctx.lineWidth = 0.5;
     ctx.arc(Math.round(node['displayX']),
             Math.round(node['displayY']),
             Math.round(node['displaySize'] + node.attr.outline),
