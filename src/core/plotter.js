@@ -293,37 +293,9 @@ function Plotter(nodesCtx, edgesCtx, labelsCtx, hoverCtx, graph, w, h) {
     ctx.closePath();
     ctx.fill();
 
-    node.attr.outline && drawOutlineNode(node);
-
     node['hover'] && drawHoverNode(node);
     return self;
   };
-
-  /**
-   * Draws a circular outline of a predefined size around the node.
-   * The node needs to have a numerical attribute called 'outline',
-   * based on which the radius is calculated.
-   * @param  {Object} node The node around which to draw.
-   * @return {Plotter} Returns itself.
-   */
-  function drawOutlineNode(node) {
-    var ctx = nodesCtx;
-
-    // Node border:
-    ctx.beginPath();
-    ctx.strokeStyle = '#fff';
-    ctx.lineWidth = 0.5;
-    ctx.arc(Math.round(node['displayX']),
-            Math.round(node['displayY']),
-            Math.round(node['displaySize'] + node.attr.outline),
-            0,
-            Math.PI * 2,
-            true);
-    ctx.closePath();
-    ctx.stroke();
-
-    return self;
-  }
 
   /**
    * Draws one edge to the corresponding canvas.
